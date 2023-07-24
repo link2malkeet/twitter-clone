@@ -41,8 +41,8 @@ const NAVIGATION_ITEMS = [
 ];
 const LeftSidebar = () => {
   return (
-    <section className="fixed w-[275px] flex flex-col items-stretch h-screen space-y-4">
-      <div className="flex flex-col items-stretch h-full space-y-4 mt-4">
+    <section className="fixed w-[275px] flex flex-col items-stretch h-screen space-y-4 px-6">
+      <div className="flex flex-col h-full space-y-4 mt-4">
         {NAVIGATION_ITEMS.map((item) => (
           <Link
             href={`/${item.title.toLowerCase()}`}
@@ -55,7 +55,7 @@ const LeftSidebar = () => {
             {item.title !== "Twitter" && <div>{item.title}</div>}
           </Link>
         ))}
-        <button className="w-full rounded-full bg-primary p-4 m-4 text-2xl text-center hover:bg-opacity-70 transition duration-200">
+        <button className="rounded-full bg-primary p-4 m-4 text-2xl text-center hover:bg-opacity-70 transition duration-200">
           Tweet
         </button>
       </div>
