@@ -46,7 +46,7 @@ const LeftSidebar = () => {
         {NAVIGATION_ITEMS.map((item) => (
           <Link
             href={`/${item.title.toLowerCase()}`}
-            className="hover:bg-white/10 transition duration-200 flex items-center justify-start w-fit rounded-3xl px-4 py-3 space-x-2 text-3xl"
+            className="hover:bg-white/10 transition duration-200 flex items-center justify-start w-fit rounded-3xl px-4 py-3 space-x-2 text-2xl"
             key={item.title}
           >
             <div>
