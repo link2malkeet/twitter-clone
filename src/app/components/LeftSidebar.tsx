@@ -59,7 +59,7 @@ const LeftSidebar = () => {
           Tweet
         </button>
       </div>
-      <button className="flex items-center space-x-2 rounded-full bg-transparentp-4 text-2xl text-center hover:bg-white/10 transition duration-200 justify-between w-full">
+      <button className="flex items-center space-x-2 rounded-full bg-transparentp-4 text-2xl text-center hover:bg-white/10 transition duration-200 justify-between w-full mb-4">
         <div className="flex items-center space-x-2">
           <div className="rounded-full bg-slate-400 w-12 h-12"></div>
           <div className="text-left text-sm">

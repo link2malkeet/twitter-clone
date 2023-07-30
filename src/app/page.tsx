@@ -8,8 +8,8 @@ const Home = () => {
       <div className="max-w-[70vw] flex w-full h-full relative">
         <LeftSidebar />
         <Main />
-        <section className="w-[30%] flex flex-col space-y-4 h-screen sticky top-0 py-2 mt-2">
-          <div className="relative w-full flex items-center justify-center mx-4">
+        <section className="w-[30%] flex flex-col items-stretch h-screen px-4 sticky top-0">
+          <div className="relative w-full flex items-center justify-center mt-4">
             <label
               htmlFor="search"
               className="absolute left-0 top-0 h-full p-4"
