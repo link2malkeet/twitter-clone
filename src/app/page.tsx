@@ -1,90 +1,31 @@
-import { AiOutlineHeart, AiOutlineRetweet } from "react-icons/ai";
-import { BsChat, BsDot, BsThreeDots } from "react-icons/bs";
-import { IoShareOutline, IoStatsChart } from "react-icons/io5";
+import { BsSearch } from "react-icons/bs";
 import LeftSidebar from "./components/LeftSidebar";
+import Main from "./components/Main";
 
 const Home = () => {
   return (
-    <div className="w-full h-full flex justify-center items-center ">
-      <div className="max-w-screen-xl flex w-full h-full">
+    <div className="w-full h-full flex justify-center items-center relative bg-black">
+      <div className="max-w-[70vw] flex w-full h-full relative">
         <LeftSidebar />
-        <main className="ml-[275px] flex w-[600px]  h-full flex-col border-l-[0.5px] border-r-[0.5px] border-gray-600 min-h-screen">
-          <h1 className="text-xl font-bold p-6 my-4 backdrop-blur bg-black/10 sticky top-0">
-            Home
-          </h1>
-          <div className="border-t-[0.5px] border-b-[0.5px] border-gray-600 relative h-32 flex flex-row item-center justify-center px-4 py-4 space-x-2">
-            <div className="w-10 h-10 bg-slate-400 rounded-full flex-none my-1"></div>
-            <div className="flex flex-col w-full h-full ">
-              <div>
-                <input
-                  type="text"
-                  className="w-full h-full bg-transparent outline-none border-none border-gray-600 p-4 border-b-[0.5px] placeholder:text-2xl placeholder:text-grey-600"
-                  placeholder="What's happening?!"
-                />
-              </div>
-              <div className="w-full justify-between items-center flex">
-                <div></div>
-                <div className="w-full max-w-[100px]">
-                  <button className="rounded-full bg-primary px-4 py-2 w-full text-lg font-bold text-center hover:bg-opacity-70 transition duration-200">
-                    Tweet
-                  </button>
-                </div>
-              </div>
-            </div>
+        <Main />
+        <section className="w-[30%] flex flex-col space-y-4 h-screen sticky top-0 py-2 mt-2">
+          <div className="relative w-full flex items-center justify-center mx-4">
+            <label
+              htmlFor="search"
+              className="absolute left-0 top-0 h-full p-4"
+            >
+              <BsSearch className="w-5 h-5 text-grey-500" />
+            </label>
+            <input
+              id="search"
+              type="text"
+              placeholder="Search..."
+              className="outline-none bg-neutral-900/90 w-full h-full rounded-xl py-4 pl-10 pr-4"
+            />
           </div>
-          <div className="flex flex-col">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <div
-                key={i}
-                className="flex flex-row border-t-[0.5px] border-gray-600 p-4 space-x-4 "
-              >
-                <div>
-                  <div className="w-10 h-10 bg-slate-200 rounded-full "></div>
-                </div>
-                <div className="flex flex-col space-y-2">
-                  <div className="flex flex-row items-center justify-between">
-                    <div className="flex flex-row space-x-1 items-center">
-                      <div className="font-bold ">mel</div>
-                      <div className="text-gray-500">@malkyfaith</div>
-                      <div>
-                        <BsDot />
-                      </div>
-                      <div className="text-gray-500">1 hour ago</div>
-                    </div>
-                    <div>
-                      <BsThreeDots />
-                    </div>
-                  </div>
-                  <div className="text-white text-lg">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Minima totam magnam tenetur eius nostrum unde modi ab at et
-                    eum ipsum laborum ducimus tempore, accusantium ullam natus
-                    commodi aperiam. Impedit!
-                  </div>
-                  <div className="bg-slate-400 aspect-square w-full h-96 rounded-xl"></div>
-                  <div className="flex flex-row items-center justify-start space-x-20 w-full ">
-                    <div className="rounded-full hover:bg-white/10 cursor-pointer p-3 transition duration-200">
-                      <BsChat />
-                    </div>
-                    <div className="rounded-full hover:bg-white/10 cursor-pointer p-3 transition duration-200">
-                      <AiOutlineRetweet />
-                    </div>
-                    <div className="rounded-full hover:bg-white/10 cursor-pointer p-3 transition duration-200">
-                      <AiOutlineHeart />
-                    </div>
-                    <div className="rounded-full hover:bg-white/10 cursor-pointer p-3 transition duration-200">
-                      <IoStatsChart />
-                    </div>
-                    <div className="rounded-full hover:bg-white/10 cursor-pointer p-3 transition duration-200">
-                      <IoShareOutline />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </main>
-        <section className=""></section>
+          <div></div>
+          <div></div>
+        </section>
       </div>
     </div>
   );
