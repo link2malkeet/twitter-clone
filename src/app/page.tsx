@@ -1,6 +1,6 @@
 import LeftSidebar from "./components/LeftSidebar";
 import Main from "./components/Main";
-import RightSidebar from "./components/RightSidebar";
+import RightSection from "./components/RightSection";
 
 const Home = () => {
   return (
@@ -8,7 +8,7 @@ const Home = () => {
       <div className="max-w-[70vw] flex w-full h-full relative">
         <LeftSidebar />
         <Main />
-        <RightSidebar />
+        <RightSection />
       </div>
     </div>
   );

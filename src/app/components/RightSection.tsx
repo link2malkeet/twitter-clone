@@ -1,7 +1,7 @@
 import React from "react";
 import { BsSearch } from "react-icons/bs";
 
-const RightSidebar = () => (
+const RightSection = () => (
   <section className="w-[30%] flex flex-col items-stretch h-screen px-4 sticky top-0 overflow-scroll">
     <div className="relative w-full flex items-center justify-center mt-4 group">
       <input
@@ -52,4 +52,4 @@ const RightSidebar = () => (
   </section>
 );
 
-export default RightSidebar;
+export default RightSection;
