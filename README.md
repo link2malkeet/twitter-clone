@@ -23,3 +23,12 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 ## DB
 
 [DB diagram](https://dbdiagram.io/d/64cc5ae402bd1c4a5e384b98)
+
+## Supabase configuration for authentication
+
+[setup](https://supabase.com/docs/guides/auth/auth-helpers/nextjs#manual-configuration)
+Generate types
+
+1. install supabase cli
+2. login
+3. generate types - npx supabase gen types typescript --project-id "project-id" --schema public > types/supasbase.ts

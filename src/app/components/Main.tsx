@@ -19,8 +19,8 @@ const Main = () => (
         <div className="w-full justify-between items-center flex">
           <div></div>
           <div className="w-full max-w-[100px]">
-            <button className="rounded-full bg-primary px-4 py-2 w-full text-lg font-bold text-center hover:bg-opacity-70 transition duration-200">
-              Tweet
+            <button className="rounded-full bg-twitterColor px-4 py-2 w-full text-lg font-bold text-center hover:bg-opacity-70 transition duration-200">
+              Post
             </button>
           </div>
         </div>
