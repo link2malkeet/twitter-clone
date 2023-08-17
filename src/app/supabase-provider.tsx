@@ -4,7 +4,7 @@ import { createBrowserSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
 
 import type { SupabaseClient } from "@supabase/auth-helpers-nextjs";
-import type { Database } from "@/lib/supasbase";
+import type { Database } from "@/lib/supasbase.types";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -25,7 +25,7 @@ export default function SupabaseProvider({
   const [isOpen, setIsOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     const {
       data: { subscription },
@@ -34,6 +34,7 @@ export default function SupabaseProvider({
     });
 
     supabase.auth.getSession().then((res) => {
+      console.log("authenticated:", res.data);
       if (!res.data.session) {
         setIsOpen(true);
         return;
@@ -45,28 +46,6 @@ export default function SupabaseProvider({
     };
   }, [router, supabase]);
 
-  async function signInWithEmail() {
-    // check if username exist or not
-    setLoading(true);
-    const { data, error } = await supabase
-      .from("profiles")
-      .select()
-      .eq("username", username.trim());
-    if (data?.length! > 0) {
-      console.log(data);
-      return toast.error("Username already exist, please use another");
-    }
-    await supabase.auth.signInWithOtp({
-      email: email.trim(),
-      options: {
-        data: {
-          username: username.trim(),
-        },
-      },
-    });
-    setLoading(false);
-  }
-
   return (
     <Context.Provider value={{ supabase }}>
       <>
@@ -75,9 +54,38 @@ export default function SupabaseProvider({
           <DialogContent className=" p-6 ">
             <h3 className="text-lg my-4">Please sign in to continue</h3>
             <form
-              onSubmit={(e) => {
+              onSubmit={async (e) => {
                 e.preventDefault();
-                signInWithEmail();
+
+                setIsLoading(true);
+
+                // first check if the username exists or not
+                const { data, error } = await supabase
+                  .from("profiles")
+                  .select()
+                  .eq("username", username.trim());
+
+                if (data && data?.length > 0) {
+                  return toast.error(
+                    "username already exists, please use another"
+                  );
+                }
+
+                const { data: signUpData, error: signUpError } =
+                  await supabase.auth.signInWithOtp({
+                    email: email.trim(),
+                    options: {
+                      data: {
+                        username,
+                      },
+                    },
+                  });
+
+                if (signUpError) {
+                  return toast.error(signUpError.message);
+                }
+                toast.success("magic link sent successfully");
+                setIsLoading(false);
               }}
             >
               <Input
@@ -96,7 +104,7 @@ export default function SupabaseProvider({
                 You will receive a logic magic link here
               </p>
               <div className="flex w-full justify-end">
-                <Button disabled={loading} className="bg-twitterColor">
+                <Button disabled={isLoading} className="bg-twitterColor">
                   Login
                 </Button>
               </div>
