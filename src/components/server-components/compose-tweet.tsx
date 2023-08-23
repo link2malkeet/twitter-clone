@@ -4,7 +4,6 @@ import { createServerComponentSupabaseClient } from "@supabase/auth-helpers-next
 import { cookies, headers } from "next/headers";
 import { randomUUID } from "crypto";
 import { SupabaseClient } from "@supabase/supabase-js";
-import { tweets } from "@/lib/db/schema";
 interface Props {}
 
 const ComposeTweet = (props: Props) => {

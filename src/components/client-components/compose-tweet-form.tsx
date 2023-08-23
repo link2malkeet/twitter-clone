@@ -17,7 +17,6 @@ export const ComposeTweetForm = ({ serverAction }: Props) => {
       console.log("ComposeTweetForm: error:", err);
     }
   };
-
   return (
     <form action={handleSubmitTweet} className="flex flex-col w-full h-full">
       <div className="flex flex-col w-full h-full ">
