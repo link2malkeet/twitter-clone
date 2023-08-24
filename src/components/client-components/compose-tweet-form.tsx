@@ -1,11 +1,12 @@
 "use client";
-import React from "react";
+import React, { useRef } from "react";
 import { toast } from "sonner";
 interface Props {
   serverAction: any;
 }
 
 export const ComposeTweetForm = ({ serverAction }: Props) => {
+  const myForm = useRef<HTMLFormElement | null>(null);
   const handleSubmitTweet = async (data: any) => {
     try {
       const res = await serverAction(data);
@@ -13,12 +14,17 @@ export const ComposeTweetForm = ({ serverAction }: Props) => {
         return toast.error(res?.error.messages);
       }
       toast.success("Tweet sent.");
+      myForm?.current?.reset();
     } catch (err) {
       console.log("ComposeTweetForm: error:", err);
     }
   };
   return (
-    <form action={handleSubmitTweet} className="flex flex-col w-full h-full">
+    <form
+      action={handleSubmitTweet}
+      className="flex flex-col w-full h-full"
+      ref={myForm}
+    >
       <div className="flex flex-col w-full h-full ">
         <div>
           <input

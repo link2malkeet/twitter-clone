@@ -1,32 +1,13 @@
 import ComposeTweet from "@/components/server-components/compose-tweet";
-import { Database } from "@/lib/supasbase.types";
-import { SupabaseClient } from "@supabase/supabase-js";
+import { getTweet } from "@/lib/supabase/get-tweets";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 import { AiOutlineHeart, AiOutlineRetweet } from "react-icons/ai";
 import { BsChat, BsDot, BsThreeDots } from "react-icons/bs";
 import { IoShareOutline, IoStatsChart } from "react-icons/io5";
-import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
 
 dayjs.extend(relativeTime);
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseSecretKey = process.env.SUPABASE_SECRET_KEY;
-async function getTweet() {
-  if (supabaseUrl && supabaseSecretKey) {
-    const supabaseServer = new SupabaseClient(supabaseUrl, supabaseSecretKey);
-    return await supabaseServer
-      .from("tweets")
-      .select(`*, profiles(full_name, username)`)
-      .returns<
-        (Database["public"]["Tables"]["tweets"]["Row"] & {
-          profiles: Pick<
-            Database["public"]["Tables"]["profiles"]["Row"],
-            "full_name" | "username"
-          >;
-        })[]
-      >();
-  }
-}
 const Main = async () => {
   const res = await getTweet();
   return (

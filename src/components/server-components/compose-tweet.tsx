@@ -1,9 +1,9 @@
-import React from "react";
-import { ComposeTweetForm } from "../client-components/compose-tweet-form";
 import { createServerComponentSupabaseClient } from "@supabase/auth-helpers-nextjs";
-import { cookies, headers } from "next/headers";
-import { randomUUID } from "crypto";
 import { SupabaseClient } from "@supabase/supabase-js";
+import { randomUUID } from "crypto";
+import { revalidatePath } from "next/cache";
+import { cookies, headers } from "next/headers";
+import { ComposeTweetForm } from "../client-components/compose-tweet-form";
 interface Props {}
 
 const ComposeTweet = (props: Props) => {
@@ -37,6 +37,7 @@ const ComposeTweet = (props: Props) => {
       text: tweet.toString(),
       id: randomUUID(),
     });
+    revalidatePath("/");
     return { data, error };
   };
 
